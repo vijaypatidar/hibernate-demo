@@ -42,7 +42,6 @@ public class City {
         return "City{" +
                 "id=" + id +
                 ", cityName='" + cityName + '\'' +
-                ", state=" + state +
                 '}';
     }
 }

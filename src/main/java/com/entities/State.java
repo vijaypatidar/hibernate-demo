@@ -68,7 +68,6 @@ public class State {
                 "id=" + id +
                 ", stateName='" + stateName + '\'' +
                 ", stateCode='" + stateCode + '\'' +
-                ", country=" + country +
                 '}';
     }
 }
