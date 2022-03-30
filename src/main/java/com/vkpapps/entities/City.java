@@ -1,10 +1,13 @@
-package com.entities;
+package com.vkpapps.entities;
+
+import com.vkpapps.dto.CityDto;
+import com.vkpapps.dto.EntityToDtoConverter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "city")
-public class City {
+public class City implements EntityToDtoConverter<CityDto> {
     @Id
     @Column(name = "city_id")
     private long id;
@@ -43,5 +46,13 @@ public class City {
                 "id=" + id +
                 ", cityName='" + cityName + '\'' +
                 '}';
+    }
+
+    @Override
+    public CityDto toDto() {
+        return new CityDto(
+                this.id,
+                this.cityName
+        );
     }
 }

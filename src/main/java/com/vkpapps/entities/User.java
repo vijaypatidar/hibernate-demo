@@ -1,4 +1,4 @@
-package com.entities;
+package com.vkpapps.entities;
 
 import javax.persistence.*;
 import java.util.Date;

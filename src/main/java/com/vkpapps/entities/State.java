@@ -1,4 +1,7 @@
-package com.entities;
+package com.vkpapps.entities;
+
+import com.vkpapps.dto.EntityToDtoConverter;
+import com.vkpapps.dto.StateDto;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -6,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "state")
-public class State {
+public class State implements EntityToDtoConverter<StateDto> {
     @Id
     @Column(name = "state_id")
     private long id;
@@ -69,5 +72,14 @@ public class State {
                 ", stateName='" + stateName + '\'' +
                 ", stateCode='" + stateCode + '\'' +
                 '}';
+    }
+
+    @Override
+    public StateDto toDto() {
+        return new StateDto(
+                this.id,
+                this.stateName,
+                this.stateCode
+        );
     }
 }

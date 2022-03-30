@@ -1,4 +1,7 @@
-package com.entities;
+package com.vkpapps.entities;
+
+import com.vkpapps.dto.CountryDto;
+import com.vkpapps.dto.EntityToDtoConverter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -6,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "country")
-public class Country {
+public class Country implements EntityToDtoConverter<CountryDto> {
     @Id()
     @Column(name = "country_id")
     private long id;
@@ -15,7 +18,7 @@ public class Country {
     @Column(name = "country_code")
     private String countryCode;
 
-    @OneToMany(mappedBy = "country",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "country", fetch = FetchType.LAZY)
     private Set<State> states = new HashSet<>();
 
     public long getId() {
@@ -57,5 +60,14 @@ public class Country {
                 ", countryName='" + countryName + '\'' +
                 ", countryCode='" + countryCode + '\'' +
                 '}';
+    }
+
+    @Override
+    public CountryDto toDto() {
+        return new CountryDto(
+                this.id,
+                this.countryName,
+                this.countryCode
+        );
     }
 }
